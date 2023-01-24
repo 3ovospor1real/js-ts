@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+body{
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: lightblue;
+}
+main{
+    background-color: white;
+    padding: 10px;
+    max-width: 800px;
+    width: 80vw;
+    margin: auto;
+    border-radius: 10px;
+}
+input#botao{
+    border: none;
+    background-color: teal;
+    color: white;
+    padding: 5px;
+    border-radius: 15px;
+}
+input{
+    margin-bottom: 5px;
+}
