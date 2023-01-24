@@ -8,9 +8,9 @@ function verify() {
         alert('[ERROR!] Insira os dados')
     } else{
         if (listaConvidado.indexOf(nome.value) > -1 || listaConvidado.indexOf(convidado.value) > -1) {
-        window.location = "allowed.html"
+        window.location = "pages/allowed.html"
         } else {
-        window.location = "denied.html"
+        window.location = "pages/denied.html"
         }
     }
 
