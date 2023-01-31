@@ -17,3 +17,4 @@ function retornaHora(data) {
 
 const hora = new Date('2007-12-27');
 console.log(hora.toLocaleString('en-US'));
+
