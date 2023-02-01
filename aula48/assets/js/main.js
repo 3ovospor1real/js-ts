@@ -8,14 +8,14 @@ function myScope() {
         let taskName = inputTask.value;
         
         if(!taskName) return
-        
-        
-        
+
+        let item = createTask(taskName);
+        list.appendChild(item);
     }
     
     function createTask (taskName) {
         let task = document.createElement('li');
-        task.innerHTML = taskName + '<button>Remover tarefa</button>'
+        task.innerHTML = taskName + ' '+ '<button class="remove">Remover tarefa</button>'
         return task
     }
 
