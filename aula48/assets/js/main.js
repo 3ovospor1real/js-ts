@@ -4,21 +4,33 @@ function myScope() {
     const buttonTask = document.querySelector('.add-task');
     const list = document.querySelector('ul.list');
 
+    // Adiciona a tarefa quando a tecla ENTER for pressionada
+    inputTask.addEventListener('keypress', (e) => {
+        if(e.keyCode === 13){
+            if(!inputTask.value) return;
+            addTask(inputTask.value)
+        }
+    });
+
+    // Adicona a tarefa quando clicar no botão ADICIONAR TAREFA
+    buttonTask.addEventListener('click', (e) => {
+        addTask(inputTask.value);
+    });
+
+    // função para adicionar a tarefa
+    function addTask (inputText) {
+        const task = document.createElement('li');
+        task.innerHTML = inputText
+        list.appendChild(task);
+        cleanInput();
+        createButtonRemove(task);
+        saveTask();
+    };
+
     // função para limpar o input
     function cleanInput () {
         inputTask.value = '';
         inputTask.focus();
-    };
-
-    // função para adicionar a tarefa
-    function addTask () {
-        
-        if(!inputTask.value) return;
-
-        let item = createTask(inputTask.value);
-        list.appendChild(item);
-        cleanInput();
-        saveTask();
     };
     
     // função para criar o botão de remover tarefa
@@ -30,26 +42,6 @@ function myScope() {
         removeButton.setAttribute('title', 'Apagar esta tarefa');
         li.appendChild(removeButton);
     };
-
-    // função que cria a tarefa
-    function createTask (taskName) {
-        const task = document.createElement('li');
-        task.innerHTML = taskName
-        createButtonRemove(task);
-        return task
-    };
-    
-    // Adiciona a tarefa quando a tecla ENTER for pressionada
-    inputTask.addEventListener('keypress', (e) => {
-        if(e.keyCode === 13){
-            addTask()
-        }
-    });
-
-    // Adicona a tarefa quando clicar no botão ADICIONAR TAREFA
-    buttonTask.addEventListener('click', (e) => {
-        addTask();
-    });
 
     // Salva a tarefa
     function saveTask() {
@@ -72,8 +64,7 @@ function myScope() {
         const tasksList = JSON.parse(tasks);
         
         for(let tarefa of tasksList) {
-            const task = createTask(tarefa);
-            addTask(task);
+            addTask(tarefa);
         }
     }   
     addSaveTasks()
