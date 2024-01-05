@@ -1,6 +1,7 @@
 class Dispositivo {
-    constructor(nome) {
+    constructor(nome, modelo) {
         this.nome = nome;
+        this.modelo = modelo;
         this.ligado = false;
     }
 
@@ -36,12 +37,27 @@ class Smartphone extends Dispositivo {
     takePicture() {
         console.log('Foto tirada!');
     }
-    
 }
 
 const ip = new Smartphone('A13', 'Grafite');
 
-ip.ligar();
-ip.takePicture()
+// ip.ligar();
+// ip.takePicture()
 
-console.log(ip);
+// console.log(ip);
+
+
+class Tablet extends Dispositivo {
+    constructor(nome, temWifi, modelo) {
+        super(nome, modelo);
+        this.temWifi = temWifi
+    }
+
+    ligar() {
+        console.log('Você alterou o método ligar!')
+    }
+}
+
+const t1 = new Tablet('Ipad', true, '321');
+t1.ligar()
+console.log(t1.modelo)

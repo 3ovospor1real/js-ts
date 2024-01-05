@@ -36,6 +36,7 @@ ValidaCPF.prototype.valida = function() {
     const digito2 = this.criaDigito(cpfParcial + digito1)
 
     const novoCpf = cpfParcial + digito1 + digito2
+    console.log(novoCpf)
     if (this.cpfLimpo !== novoCpf) return false
 
     return true;
@@ -66,8 +67,10 @@ ValidaCPF.prototype.isSequencia = function() {
 let cpf = new ValidaCPF('795.432.786-87');
 
 
-if(cpf.valida()){
-    console.log('CPF válido');
-} else {
-    console.log('CPF inválido')
-}
+// if(cpf.valida()){
+//     console.log('CPF válido');
+// } else {
+//     console.log('CPF inválido')
+// }
+
+console.log(cpf.criaDigito(cpf.cpfLimpo.slice(0, -2)))
