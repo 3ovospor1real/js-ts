@@ -1,17 +1,19 @@
 const request = obj => {
-    const xmr = new XMLHttpRequest();
-    xmr.open(obj.method, obj.url, true);
-    xmr.send();
+    return new Promise((resolve, reject) => {
+        const xmr = new XMLHttpRequest();
+        xmr.open(obj.method, obj.url, true);
+        xmr.send();
 
-    xmr.addEventListener('load', () => {
-        if(xmr.status >= 200 && xmr.status < 300) {
-            obj.success(xmr.responseText);
-        } else {
-            obj.error({
-                code: xmr.status,
-                text: xmr.statusText,
-            })
-        }
+        xmr.addEventListener('load', () => {
+            if(xmr.status >= 200 && xmr.status < 300) {
+                resolve(xmr.responseText);
+            } else {
+                reject({
+                    code: xmr.status,
+                    text: xmr.statusText,
+                })
+            }
+        })
     })
 }
 document.addEventListener('click', e => {
@@ -31,12 +33,10 @@ function loadPage(el) {
     request({
         method: 'GET',
         url: href,
-        success(reponse) {
-            document.querySelector('.result').innerHTML = reponse
-        },
-        error(e) {
-            alert('[ERRO] Recarregue a página')
-        }
+    }).then(response => {
+        document.querySelector('.result').innerHTML = response
+    }).catch((e) => {
+        alert(`ERROR: ${e.code} \n${e.text}`)
     })
 }
     
