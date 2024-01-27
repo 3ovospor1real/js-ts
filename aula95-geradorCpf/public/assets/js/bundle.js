@@ -9,7 +9,45 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validaCpf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validaCpf */ "./src/modules/validaCpf.js");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ GeraCpf)
+/* harmony export */ });
+/* harmony import */ var _validaCpf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validaCpf.js */ "./src/modules/validaCpf.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+var GeraCpf = /*#__PURE__*/function () {
+  function GeraCpf() {
+    _classCallCheck(this, GeraCpf);
+  }
+  _createClass(GeraCpf, [{
+    key: "randomCpf",
+    value: function randomCpf() {
+      var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100000000;
+      var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 999999999;
+      return String(Math.floor(Math.random() * (max - min) + min));
+    }
+  }, {
+    key: "formate",
+    value: function formate(cpf) {
+      return cpf.slice(0, 3) + '.' + cpf.slice(3, 6) + '.' + cpf.slice(6, 9) + '-' + cpf.slice(9, 11);
+    }
+  }, {
+    key: "createNewCpf",
+    value: function createNewCpf() {
+      var cpfNoDigit = this.randomCpf();
+      var digit1 = _validaCpf_js__WEBPACK_IMPORTED_MODULE_0__["default"].createDigit(cpfNoDigit);
+      var digit2 = _validaCpf_js__WEBPACK_IMPORTED_MODULE_0__["default"].createDigit(cpfNoDigit + digit1);
+      var newCpf = cpfNoDigit + digit1 + digit2;
+      return this.formate(newCpf);
+    }
+  }]);
+  return GeraCpf;
+}();
 
 
 /***/ }),
@@ -52,15 +90,15 @@ var ValidaCPF = /*#__PURE__*/function () {
       if (this.cpfLimpo.length !== 11) return false;
       if (this.isSequencia()) return false;
       var cpfParcial = this.cpfLimpo.slice(0, -2);
-      var digito1 = ValidaCPF.criaDigito(cpfParcial);
-      var digito2 = ValidaCPF.criaDigito(cpfParcial + digito1);
+      var digito1 = ValidaCPF.createDigit(cpfParcial);
+      var digito2 = ValidaCPF.createDigit(cpfParcial + digito1);
       var novoCpf = cpfParcial + digito1 + digito2;
       if (this.cpfLimpo != novoCpf) return false;
       return true;
     }
   }], [{
-    key: "criaDigito",
-    value: function criaDigito(cpfParcial) {
+    key: "createDigit",
+    value: function createDigit(cpfParcial) {
       var cpfArray = Array.from(cpfParcial);
       var regressivo = cpfArray.length + 1;
       var total = cpfArray.reduce(function (ac, val) {
@@ -155,7 +193,36 @@ form button {
 form button:hover {
   background: var(--primary-color-darker);
 }
-`, "",{"version":3,"sources":["webpack://./src/assets/css/style.css"],"names":[],"mappings":"AACA;EACE,wBAAwB;EACxB,+BAA+B;AACjC;;AAEA;EACE,sBAAsB;EACtB,UAAU;AACZ;;AAEA;EACE,SAAS;EACT,UAAU;EACV,gCAAgC;EAChC,oCAAoC;EACpC,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,iBAAiB;EACjB,gBAAgB;EAChB,aAAa;EACb,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,uCAAuC;AACzC;;AAEA;EACE,YAAY;EACZ,gCAAgC;EAChC,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,YAAY;EACZ,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,uCAAuC;AACzC","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');\n:root {\n  --primary-color: #001b50;\n  --primary-color-darker: #000f2e;\n}\n\n* {\n  box-sizing: border-box;\n  outline: 0;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--primary-color);\n  font-family: 'Open sans', sans-serif;\n  font-size: 1.3em;\n  line-height: 1.5em;\n}\n\n.container {\n  max-width: 640px;\n  margin: 50px auto;\n  background: #fff;\n  padding: 20px;\n  border-radius: 10px;\n}\n\nform input, form label, form button {\n  display: block;\n  width: 100%;\n  margin-bottom: 10px;\n}\n\nform input {\n  font-size: 24px;\n  height: 50px;\n  padding: 0 20px;\n}\n\nform input:focus {\n  outline: 1px solid var(--primary-color);\n}\n\nform button {\n  border: none;\n  background: var(--primary-color);\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  height: 50px;\n  cursor: pointer;\n  margin-top: 30px;\n}\n\nform button:hover {\n  background: var(--primary-color-darker);\n}\n"],"sourceRoot":""}]);
+
+.container__result{
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+}
+
+div.result {
+  font-weight: 700;
+  background: #efefef;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+button {
+  padding: 5px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: #efefef;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #e0e0e0
+}`, "",{"version":3,"sources":["webpack://./src/assets/css/style.css"],"names":[],"mappings":"AACA;EACE,wBAAwB;EACxB,+BAA+B;AACjC;;AAEA;EACE,sBAAsB;EACtB,UAAU;AACZ;;AAEA;EACE,SAAS;EACT,UAAU;EACV,gCAAgC;EAChC,oCAAoC;EACpC,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,iBAAiB;EACjB,gBAAgB;EAChB,aAAa;EACb,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,uCAAuC;AACzC;;AAEA;EACE,YAAY;EACZ,gCAAgC;EAChC,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,YAAY;EACZ,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,uCAAuC;AACzC;;AAEA;EACE,aAAa;EACb,2BAA2B;EAC3B,SAAS;EACT,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,YAAY;EACZ,kBAAkB;EAClB,mBAAmB;EACnB,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,eAAe;EACf;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');\n:root {\n  --primary-color: #001b50;\n  --primary-color-darker: #000f2e;\n}\n\n* {\n  box-sizing: border-box;\n  outline: 0;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--primary-color);\n  font-family: 'Open sans', sans-serif;\n  font-size: 1.3em;\n  line-height: 1.5em;\n}\n\n.container {\n  max-width: 640px;\n  margin: 50px auto;\n  background: #fff;\n  padding: 20px;\n  border-radius: 10px;\n}\n\nform input, form label, form button {\n  display: block;\n  width: 100%;\n  margin-bottom: 10px;\n}\n\nform input {\n  font-size: 24px;\n  height: 50px;\n  padding: 0 20px;\n}\n\nform input:focus {\n  outline: 1px solid var(--primary-color);\n}\n\nform button {\n  border: none;\n  background: var(--primary-color);\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  height: 50px;\n  cursor: pointer;\n  margin-top: 30px;\n}\n\nform button:hover {\n  background: var(--primary-color-darker);\n}\n\n.container__result{\n  display: flex;\n  justify-content: flex-start;\n  gap: 10px;\n  align-items: center;\n}\n\ndiv.result {\n  font-weight: 700;\n  background: #efefef;\n  width: fit-content;\n  padding: 5px;\n  border-radius: 8px;\n}\n\nbutton {\n  padding: 5px;\n  height: 40px;\n  border: none;\n  border-radius: 8px;\n  background: #efefef;\n  font-size: 16px;\n  font-weight: 700;\n}\n\nbutton:hover {\n  cursor: pointer;\n  background: #e0e0e0\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -684,10 +751,17 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
 /* harmony import */ var _modules_geraCpf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/geraCpf.js */ "./src/modules/geraCpf.js");
-/* harmony import */ var _modules_validaCpf_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/validaCpf.js */ "./src/modules/validaCpf.js");
 
 
-
+(function () {
+  var result = document.querySelector('.result');
+  var buttom = document.querySelector('button');
+  var geraCpf = new _modules_geraCpf_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  result.innerHTML = geraCpf.createNewCpf();
+  buttom.addEventListener('click', function (e) {
+    result.innerHTML = geraCpf.createNewCpf();
+  });
+})();
 })();
 
 /******/ })()
