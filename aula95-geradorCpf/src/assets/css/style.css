@@ -56,3 +56,7 @@ form button {
 form button:hover {
   background: var(--primary-color-darker);
 }
+
+div.result {
+  font-weight: 700;
+}
