@@ -2,12 +2,12 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, 'public', 'assets', 'js'),
         filename: 'bundle.js'
     },
-    module: {
+    module:{
         rules: [{
             exclude: /node_modules/,
             test: /\.js$/,
@@ -17,7 +17,11 @@ module.exports = {
                     presets: ['@babel/env']
                 }
             }
+        },
+        {
+            test: /\.css/,
+            use: ['style-loader', 'css-loader']
         }]
     },
     devtool: 'source-map'
-};
+}

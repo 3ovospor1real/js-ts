@@ -5,9 +5,9 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'public', 'assets', 'js'),
-        filename: 'bundle.js',
+        filename: 'bundle.js'
     },
-    module: {
+    module:{
         rules: [{
             exclude: /node_modules/,
             test: /\.js$/,
@@ -20,4 +20,4 @@ module.exports = {
         }]
     },
     devtool: 'source-map'
-};
+}
