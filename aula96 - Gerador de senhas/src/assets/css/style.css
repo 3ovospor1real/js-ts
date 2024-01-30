@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+:root {
+  --primary-color: #001b50;
+  --primary-color-darker: #000f2e;
+}
+
+* {
+  box-sizing: border-box;
+  outline: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--primary-color);
+  font-family: 'Open sans', sans-serif;
+  font-size: 1.3em;
+  line-height: 1.5em;
+}
+
+.container {
+  max-width: 640px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+form input, form label, form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+form input {
+  font-size: 24px;
+  height: 50px;
+  padding: 0 20px;
+}
+
+form input:focus {
+  outline: 1px solid var(--primary-color);
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+h1{
+  margin-bottom: 10px;
+}
+
+.result {
+  font-size: 1.4em;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  background: #0000000d;
+  width: fit-content;
+  padding: 7px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+button:hover {
+  background: var(--primary-color-darker);
+}
+
+input[type="number"] {
+  height: 20px;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
