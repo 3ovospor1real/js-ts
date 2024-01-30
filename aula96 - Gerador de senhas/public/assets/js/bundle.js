@@ -20,9 +20,16 @@ var chkUpper = document.querySelector('.chk-upper');
 var chkLower = document.querySelector('.chk-lower');
 var chkNumber = document.querySelector('.chk-number');
 var chkSymbol = document.querySelector('.chk-symbol');
+var button = document.querySelector('.generate-password');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
-  console.log('Hello world');
+  button.addEventListener('click', function (e) {
+    result.innerHTML = password();
+  });
 });
+function password() {
+  var senha = (0,_generator__WEBPACK_IMPORTED_MODULE_0__["default"])(caracterQtd.value, chkUpper.checked, chkLower.checked, chkNumber.checked, chkSymbol.checked);
+  return senha || '<span style="color: red">Selecione os valores e tente novamente</span>';
+}
 
 /***/ }),
 
