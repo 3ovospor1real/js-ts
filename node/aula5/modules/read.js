@@ -1,3 +1,5 @@
-const fs = require("fs").promises;
+const fs = require('fs/promises');
 
-module.exports = (path) => fs.readFile(path, "utf-8");
+module.exports = (path) => {
+    return fs.readFile(path, 'utf-8');
+};

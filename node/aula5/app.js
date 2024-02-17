@@ -1,26 +1,21 @@
-const path = require("path");
-const write = require("./modules/write");
-const read = require("./modules/read");
+const path = require('path');
+const fs = require('node:fs');
+const write = require('./modules/write');
+const read = require('./modules/read');
 
-const caminhoArquivo = path.resolve(__dirname, 'test.json');
+const filePath = path.resolve(__dirname, 'file.json');
 
-// const people = [
-//     {nome: 'João', sobrenome: 'Ribeiro'},
-//     {nome: 'Nívia', sobrenome: 'Cristina'},
-//     {nome: 'Miguel', sobrenome: 'Ferreira'},
-//     {nome: 'Gustavo', sobrenome: 'Lima'}
-// ]
+/*
+const people = JSON.stringify([
+    {nome: 'João'},
+    {nome: 'Miguel'},
+    {nome: 'Nívia'},
+],'' , 2)
 
-// write(people, caminhoArquivo)
+write(filePath, people);
+*/
 
-async function readFile(path) {
-    const data = await read(path);
-    loadData(data);
-}
 
-function loadData(data) {
-    data = JSON.parse(data)
-    data.forEach(e => console.log(e['nome'], e['sobrenome']));
-}
-
-readFile(caminhoArquivo);
+read(filePath)
+.then(data => console.log(data))
+.catch(e => console.error(e));
